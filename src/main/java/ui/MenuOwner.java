@@ -11,6 +11,7 @@ import static util.VerifyUserInput.verifyStringToBooleanUserInput;
 
 public class MenuOwner {
 
+    // Service de donos, onde esta toda a logica de negocio
     private static final OwnerService ownerService = new OwnerService();
     private static final Scanner sc = new Scanner(System.in);
 
@@ -21,13 +22,16 @@ public class MenuOwner {
         String opString = sc.next();
         sc.nextLine();
 
+        // Se o usuario escolher nao cadastrar um novo dono ele vai para a opcao de inserir o cpf de um existente
         if (!(verifyStringToBooleanUserInput(opString))){
-            System.out.println("Digite o CPF do dono (XXX.XXX.XXX-XX)");
+            System.out.println("Digite o CPF do dono XXX.XXX.XXX-XX");
             String cpfInputUser = sc.nextLine();
+            // Verifica se o CPF esta no modelo certo
             String cpf = VerifyUserInput.verifyCpfInput(cpfInputUser);
 
             System.out.println("Buscando em nosso bando de dados ...");
 
+            // Tenta buscar na lista do Service onde esta todos os donos se o CPF ja esta cadastrado ou nao
             try{
                 Owner owner = ownerService.getOwnerByCpf(cpf);
 
@@ -40,6 +44,8 @@ public class MenuOwner {
             }
         }
 
+        // Essa a parte de cadastro de um novo dono
+        // Vai inserir Nome, CPF (tem verificacao para ver se segue o padrao) e numero de contato (tem verificacao para ver se segue o padrao)
         System.out.println("Digite o nome do dono do imovel");
         String name = sc.nextLine();
 
@@ -47,11 +53,12 @@ public class MenuOwner {
         String numberInputUser = sc.nextLine();
         String number = verifyNumberInput(numberInputUser);
 
-        System.out.println("Digite o CPF do dono do imovel (XXX.XXX.XXX-XX)");
+        System.out.println("Digite o CPF do dono do imovel XXX.XXX.XXX-XX");
         String cpfInputUser = sc.nextLine();
 
         String cpf = VerifyUserInput.verifyCpfInput(cpfInputUser);
 
+        // Verifica se ja existe alguem com esse CPF cadastrado
         if (!ownerService.isCpfAlreadyRegister(cpf)) {
 
             System.out.println("Criando dono ...");
@@ -67,6 +74,7 @@ public class MenuOwner {
 
     }
 
+    // Mostra todos os Donos
     public static void menuShowAllOwners(){
 
         System.out.println("========= DONOS ============");
@@ -83,6 +91,7 @@ public class MenuOwner {
 
     }
 
+    // Mostra o dono com base no CPF que for passado
     public static void menuShowOwnerByCpf(String cpf) throws Exception {
 
         Owner owner = ownerService.getOwnerByCpf(cpf);

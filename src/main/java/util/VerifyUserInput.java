@@ -38,12 +38,10 @@ public class VerifyUserInput {
 
         Pattern pattern = Pattern.compile(regex);
 
-        Matcher matcher = pattern.matcher(cpf);
-
         while (!(pattern.matcher(cpf).matches())){
 
             System.out.println("CPF invalido ...");
-            System.out.println("Insira outro (XXX.XXX.XXX-XX): ");
+            System.out.println("Insira outro XXX.XXX.XXX-XX: ");
             cpf = sc.nextLine();
 
         }

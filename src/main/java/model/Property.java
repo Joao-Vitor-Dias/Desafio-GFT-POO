@@ -8,9 +8,11 @@ public abstract class Property {
     public Owner owner;
     private int rentalValuePerMonth;
 
+    // Construtor sem os argumentos
     public Property() {
     }
 
+    // Construtor com todos os argumentos
     public Property(String address, String propertyNumber, boolean isRent, Owner owner, int rentalValuePerMonth) {
         this.address = address;
         this.propertyNumber = propertyNumber;
@@ -19,20 +21,25 @@ public abstract class Property {
         this.rentalValuePerMonth = rentalValuePerMonth;
     }
 
+    // Metodo abstrato onde as classes filhas voa ficar responsaveis por sobreescrever ela e dar um logica para elea
     public abstract boolean isRented();
 
+    // Pega o contato do dono
     public String getOwnerContact(){
 
         return owner.getNumber();
 
     }
 
+    // Calcula o total do valor que o usuario vai ter que pagar.
+    // Com base no valor de aluguel do imovel e da quantidade de meses infordo pelo usuario
     public int calculateRental(int periodOfTimeInMonth){
 
         return periodOfTimeInMonth * this.rentalValuePerMonth;
 
     }
 
+    // Calcula o disconto com base nos dias que o usuario informar que vai ficar
     public double calculateDiscount(int periodOfTimeInMonth){
 
         if (periodOfTimeInMonth >= 36){
@@ -46,6 +53,8 @@ public abstract class Property {
         }
 
     }
+
+    // Getters e Setters
 
     public String getAddress() {
         return address;

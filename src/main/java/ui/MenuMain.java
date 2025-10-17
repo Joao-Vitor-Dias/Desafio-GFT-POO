@@ -8,6 +8,7 @@ public class MenuMain {
 
     private final Scanner sc = new Scanner(System.in);
 
+    // Menu principal
     public void openMenu() throws Exception{
 
         System.out.println("==== BEM-VINDO(A) A NOSSA IMOBILIARIA ===");

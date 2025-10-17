@@ -6,11 +6,16 @@ public class Owner {
     private String number;
     private String cpf;
 
+
+    // Construtor com todos os argumentos
     public Owner(String name, String number, String cpf) {
         this.name = name;
         this.number = number;
         this.cpf = cpf;
     }
+
+
+    // Getters e Setters
 
     public String getName() {
         return name;
