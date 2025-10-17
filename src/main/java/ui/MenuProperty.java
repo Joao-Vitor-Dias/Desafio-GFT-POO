@@ -13,7 +13,7 @@ public class MenuProperty {
     private static final PropertyService propertyService = new PropertyService();
     private static final Scanner sc = new Scanner(System.in);
 
-    public static void menuCreationProperty(){
+    public static void menuCreationProperty() throws Exception{
 
         System.out.println("======== CADASTRO IMOVEL =========");
 

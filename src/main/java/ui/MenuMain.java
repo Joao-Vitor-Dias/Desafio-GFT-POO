@@ -8,12 +8,12 @@ public class MenuMain {
 
     private final Scanner sc = new Scanner(System.in);
 
-    public void openMenu(){
+    public void openMenu() throws Exception{
 
         System.out.println("==== BEM-VINDO(A) A NOSSA IMOBILIARIA ===");
         System.out.println("Oque deseja? ");
         System.out.println("1 - Cadastrar um Imovel");
-        System.out.println("2 - Cadastrar um Dono de Imovel");
+        System.out.println("2 - Cadastrar um Dono de Imovel / Consultar um dono de Imovel");
         System.out.println("3 - Ver todos os imoveis");
         System.out.println("4 - Remover um Imovel");
         System.out.println("5 - Calcular aluguel de um Imovel");
@@ -59,6 +59,7 @@ public class MenuMain {
         String wantContinueString = sc.next();
 
         if (verifyStringToBooleanUserInput(wantContinueString)) {
+
             openMenu();
         }
 

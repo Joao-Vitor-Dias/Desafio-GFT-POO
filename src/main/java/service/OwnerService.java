@@ -15,7 +15,7 @@ public class OwnerService {
 
     }
 
-    public Owner getOwnerByCpf(String cpf){
+    public Owner getOwnerByCpf(String cpf) throws Exception {
 
         for (Owner owner: owners){
             if (owner.getCpf().equalsIgnoreCase(cpf)){
@@ -23,7 +23,7 @@ public class OwnerService {
             }
         }
 
-        throw new RuntimeException();
+        throw new Exception("O dono nao foi encontrado ...");
 
     }
 

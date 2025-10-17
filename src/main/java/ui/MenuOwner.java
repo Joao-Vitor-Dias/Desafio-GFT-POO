@@ -12,7 +12,7 @@ public class MenuOwner {
     private static final OwnerService ownerService = new OwnerService();
     private static final Scanner sc = new Scanner(System.in);
 
-    public static Owner menuCreateOwner(){
+    public static Owner menuCreateOwner() throws Exception{
 
         System.out.println("======== CADASTRO DONO =========");
         System.out.println("Deseja cadastrar um novo dono? ( S / N )");
@@ -24,7 +24,17 @@ public class MenuOwner {
             String cpf = sc.nextLine();
 
             System.out.println("Buscando em nosso bando de dados ...");
-            return ownerService.getOwnerByCpf(cpf);
+
+            try{
+                Owner owner = ownerService.getOwnerByCpf(cpf);
+
+                menuShowOwnerByCpf(cpf);
+
+                return owner;
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                return null;
+            }
         }
 
         System.out.println("Digite o nome do dono do imovel");
@@ -56,6 +66,17 @@ public class MenuOwner {
             System.out.println("========================");
 
         }
+
+    }
+
+    public static void menuShowOwnerByCpf(String cpf) throws Exception {
+
+        Owner owner = ownerService.getOwnerByCpf(cpf);
+        System.out.println("=====================");
+        System.out.println("Nome do dono: " + owner.getName());
+        System.out.println("Cpf do dono: " + owner.getCpf());
+        System.out.println("Numero do dono: " + owner.getNumber());
+        System.out.println("========================");
 
     }
 
