@@ -2,6 +2,7 @@ package ui;
 
 import model.Owner;
 import service.OwnerService;
+import util.VerifyUserInput;
 
 import java.util.Scanner;
 
@@ -44,7 +45,9 @@ public class MenuOwner {
         String number = sc.nextLine();
 
         System.out.println("Digite o CPF do dono do imovel");
-        String cpf = sc.nextLine();
+        String cpfInputUser = sc.nextLine();
+
+        String cpf = VerifyUserInput.verifyCpfInput(cpfInputUser);
 
         System.out.println("Criando dono ...");
 

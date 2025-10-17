@@ -1,6 +1,8 @@
 package util;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class VerifyUserInput {
 
@@ -22,6 +24,29 @@ public class VerifyUserInput {
 
         return isRent.equalsIgnoreCase("S");
 
+    }
+
+    public static String verifyCpfInput(String cpf){
+
+        Scanner sc = new Scanner(System.in);
+
+        String regex = "^(\\d{3})\\.(\\d{3})\\.(\\d{3})\\-(\\d{2})$";
+
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(cpf);
+
+        while (!(pattern.matcher(cpf).matches())){
+
+            System.out.println("CPF invalido ...");
+            System.out.println("Insira outro: ");
+            cpf = sc.nextLine();
+
+        }
+
+
+
+        return cpf;
     }
 
 }
