@@ -15,21 +15,8 @@ public class App {
 
         Menu menu = new Menu();
 
-        // menu.menuCreationProperty();
-
         menu.mainMenu();
 
     }
-
-    /*
-    *
-    *  --- User input ---
-    * Op : What type property he wants
-    * Address: Name address
-    * PropertyNumber: Number of Property
-    * IsRent: Put if the property is available for rent (S/N)
-    * Owner: Owner of property
-    *
-    * */
 
 }
