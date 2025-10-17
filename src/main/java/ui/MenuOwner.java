@@ -21,8 +21,9 @@ public class MenuOwner {
         sc.nextLine();
 
         if (!(verifyStringToBooleanUserInput(opString))){
-            System.out.println("Digite o CPF do dono");
-            String cpf = sc.nextLine();
+            System.out.println("Digite o CPF do dono (XXX.XXX.XXX-XX)");
+            String cpfInputUser = sc.nextLine();
+            String cpf = VerifyUserInput.verifyCpfInput(cpfInputUser);
 
             System.out.println("Buscando em nosso bando de dados ...");
 
@@ -44,7 +45,7 @@ public class MenuOwner {
         System.out.println("Digite o Numero de contato do dono do imovel");
         String number = sc.nextLine();
 
-        System.out.println("Digite o CPF do dono do imovel");
+        System.out.println("Digite o CPF do dono do imovel (XXX.XXX.XXX-XX)");
         String cpfInputUser = sc.nextLine();
 
         String cpf = VerifyUserInput.verifyCpfInput(cpfInputUser);

@@ -26,6 +26,10 @@ public class VerifyUserInput {
 
     }
 
+    /*
+    * Verifica o CPF se ele esta no modelo XXX.XXX.XXX-XX
+    * E fica em um looping ate ser inserido corretamente
+    * */
     public static String verifyCpfInput(String cpf){
 
         Scanner sc = new Scanner(System.in);
@@ -39,12 +43,10 @@ public class VerifyUserInput {
         while (!(pattern.matcher(cpf).matches())){
 
             System.out.println("CPF invalido ...");
-            System.out.println("Insira outro: ");
+            System.out.println("Insira outro (XXX.XXX.XXX-XX): ");
             cpf = sc.nextLine();
 
         }
-
-
 
         return cpf;
     }
