@@ -2,78 +2,18 @@ package ui;
 
 import model.Owner;
 import model.Property;
-import service.OwnerService;
 import service.PropertyService;
 
 import java.util.Scanner;
 
 import static util.VerifyUserInput.verifyStringToBooleanUserInput;
 
-public class Menu {
+public class MenuProperty {
 
-    private final PropertyService propertyService = new PropertyService();
-    private final OwnerService ownerService = new OwnerService();
-    private final Scanner sc = new Scanner(System.in);
+    private static final PropertyService propertyService = new PropertyService();
+    private static final Scanner sc = new Scanner(System.in);
 
-    public void mainMenu(){
-
-        System.out.println("==== BEM-VINDO(A) A NOSSA IMOBILIARIA ===");
-        System.out.println("Oque deseja? ");
-        System.out.println("1 - Cadastrar um Imovel");
-        System.out.println("2 - Cadastrar um Dono de Imovel");
-        System.out.println("3 - Ver todos os imoveis");
-        System.out.println("4 - Remover um Imovel");
-        System.out.println("5 - Calcular aluguel de um Imovel");
-        System.out.println("6 - Alugar um imovel");
-        System.out.println("7 - Desoculpar um imovel");
-        System.out.println("8 - Ver todos os donos de Imovel");
-        System.out.println("0 - Sair");
-        int op = sc.nextInt();
-        sc.nextLine();
-
-        switch (op){
-
-            case 1:
-                menuCreationProperty();
-                break;
-            case 2:
-                menuCreateOwner();
-                break;
-            case 3:
-                menuOfAllProperties();
-                break;
-            case 4:
-                menuRemoveProperty();
-                break;
-            case 5:
-                menuCalculateRentPropertyValue();
-                break;
-            case 6:
-                menuRentProperty();
-                break;
-            case 7:
-                menuVacateProperty();
-                break;
-            case 8:
-                menuShowAllOwners();
-            default:
-                System.out.println("Opcao invalida");
-                break;
-
-        }
-
-        System.out.println("Deseja continuar? ( S / N )");
-        String wantContinueString = sc.next();
-
-        if (verifyStringToBooleanUserInput(wantContinueString)) {
-            mainMenu();
-        }
-
-        sc.close();
-
-    }
-
-    public void menuCreationProperty(){
+    public static void menuCreationProperty(){
 
         System.out.println("======== CADASTRO IMOVEL =========");
 
@@ -98,47 +38,15 @@ public class Menu {
         sc.nextLine();
 
         System.out.println("================================");
-        Owner owner = menuCreateOwner();
+        Owner owner = MenuOwner.menuCreateOwner();
 
         propertyService.addProperty(op,address,propertyNumber,!(verifyStringToBooleanUserInput(isRent)),owner,rentalValuePerMonth);
 
         System.out.println("Adicionando propriedade ...");
 
-
     }
 
-    public Owner menuCreateOwner(){
-
-        System.out.println("======== CADASTRO DONO =========");
-        System.out.println("Deseja cadastrar um novo dono? ( S / N )");
-        String opString = sc.next();
-        sc.nextLine();
-
-        if (!(verifyStringToBooleanUserInput(opString))){
-            System.out.println("Digite o CPF do dono");
-            String cpf = sc.nextLine();
-
-            System.out.println("Buscando em nosso bando de dados ...");
-            return ownerService.getOwnerByCpf(cpf);
-        }
-
-        System.out.println("Digite o nome do dono do imovel");
-        String name = sc.nextLine();
-
-        System.out.println("Digite o Numero de contato do dono do imovel");
-        String number = sc.nextLine();
-
-        System.out.println("Digite o CPF do dono do imovel");
-        String cpf = sc.nextLine();
-
-        System.out.println("Criando dono ...");
-
-        ownerService.addOwner(name,number,cpf);
-
-        return ownerService.getOwnerByCpf(cpf);
-    }
-
-    public boolean menuOfAllProperties(){
+    public static boolean menuOfAllProperties(){
 
         int cont = 0;
         boolean isFoundOne = false;
@@ -165,7 +73,7 @@ public class Menu {
 
     }
 
-    public void menuRemoveProperty(){
+    public static void menuRemoveProperty(){
 
         boolean isContinued = menuOfAllProperties();
 
@@ -184,7 +92,7 @@ public class Menu {
 
     }
 
-    public void menuCalculateRentPropertyValue(){
+    public static void menuCalculateRentPropertyValue(){
 
         boolean isContinued = menuOfAvailableProperty();
 
@@ -211,7 +119,7 @@ public class Menu {
 
     }
 
-    public void menuRentProperty(){
+    public static void menuRentProperty(){
 
         boolean isContinued = menuOfAvailableProperty();
 
@@ -242,7 +150,7 @@ public class Menu {
 
     }
 
-    public void menuVacateProperty(){
+    public static void menuVacateProperty(){
 
         boolean isContinued = menuOfUnavailableProperty();
 
@@ -262,7 +170,7 @@ public class Menu {
 
     }
 
-    public boolean menuOfAvailableProperty(){
+    public static boolean menuOfAvailableProperty(){
 
         int cont = 0;
         boolean isFoundOne = false;
@@ -289,7 +197,7 @@ public class Menu {
 
     }
 
-    public boolean menuOfUnavailableProperty(){
+    public static boolean menuOfUnavailableProperty(){
 
         int cont = 0;
         boolean isFoundOne = false;
@@ -314,22 +222,6 @@ public class Menu {
         }
 
         return isFoundOne;
-
-    }
-
-    public void menuShowAllOwners(){
-
-        System.out.println("========= DONOS ============");
-
-        for (Owner owner: ownerService.getAllOwners()){
-
-            System.out.println("=====================");
-            System.out.println("Nome do dono: " + owner.getName());
-            System.out.println("Cpf do dono: " + owner.getCpf());
-            System.out.println("Numero do dono: " + owner.getNumber());
-            System.out.println("========================");
-
-        }
 
     }
 
