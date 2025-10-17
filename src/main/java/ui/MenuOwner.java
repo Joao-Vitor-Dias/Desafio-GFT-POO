@@ -6,6 +6,7 @@ import util.VerifyUserInput;
 
 import java.util.Scanner;
 
+import static util.VerifyUserInput.verifyNumberInput;
 import static util.VerifyUserInput.verifyStringToBooleanUserInput;
 
 public class MenuOwner {
@@ -42,19 +43,28 @@ public class MenuOwner {
         System.out.println("Digite o nome do dono do imovel");
         String name = sc.nextLine();
 
-        System.out.println("Digite o Numero de contato do dono do imovel");
-        String number = sc.nextLine();
+        System.out.println("Digite o Numero de contato do dono do imovel (XX) XXXXX-XXXX");
+        String numberInputUser = sc.nextLine();
+        String number = verifyNumberInput(numberInputUser);
 
         System.out.println("Digite o CPF do dono do imovel (XXX.XXX.XXX-XX)");
         String cpfInputUser = sc.nextLine();
 
         String cpf = VerifyUserInput.verifyCpfInput(cpfInputUser);
 
-        System.out.println("Criando dono ...");
+        if (!ownerService.isCpfAlreadyRegister(cpf)) {
 
-        ownerService.addOwner(name,number,cpf);
+            System.out.println("Criando dono ...");
 
-        return ownerService.getOwnerByCpf(cpf);
+            ownerService.addOwner(name,number,cpf);
+
+            return ownerService.getOwnerByCpf(cpf);
+
+        }
+
+        System.out.println("Ja existe um usuario com esse CPF");
+        return null;
+
     }
 
     public static void menuShowAllOwners(){

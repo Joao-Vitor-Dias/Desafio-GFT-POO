@@ -51,4 +51,21 @@ public class VerifyUserInput {
         return cpf;
     }
 
+    public static String verifyNumberInput(String number){
+
+        Scanner sc = new Scanner(System.in);
+
+        String regex = "^\\(\\d{2}\\) \\d{5}\\-\\d{4}$";
+
+        Pattern pattern = Pattern.compile(regex);
+
+        while (!pattern.matcher(number).matches()){
+            System.out.println("Numero invalido ...");
+            System.out.println("Insira outro (XX) XXXXX-XXXX: ");
+            number = sc.nextLine();
+        }
+
+        return number;
+    }
+
 }

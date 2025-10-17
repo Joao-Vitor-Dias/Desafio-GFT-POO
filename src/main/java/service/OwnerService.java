@@ -31,4 +31,16 @@ public class OwnerService {
         return owners;
     }
 
+    public boolean isCpfAlreadyRegister(String cpf){
+
+        for (Owner owner: owners){
+            if (owner.getCpf().equals(cpf)){
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
 }
